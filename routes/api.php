@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //Route::resource('keys', 'KeyController');
-Route::resource('keys/{keySlug}', 'KeyController@show');
+Route::get('keys/{keySlug}', 'KeyController@show');
 //Route::resource('users', 'UserController');
 
 Route::get('keys/{keySlug}/toggle', 'KeyController@toggle');

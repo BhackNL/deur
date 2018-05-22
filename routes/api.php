@@ -17,12 +17,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('keys', 'KeyController');
+//Route::resource('keys', 'KeyController');
+Route::resource('keys/{keySlug}', 'KeyController@show');
 //Route::resource('users', 'UserController');
 
 Route::get('keys/{keySlug}/toggle', 'KeyController@toggle');
-Route::get('keys/{keySlug}/open', 'KeyController@toggle');
-Route::get('keys/{keySlug}/close', 'KeyController@toggle');
+Route::get('keys/{keySlug}/open', 'KeyController@open');
+Route::get('keys/{keySlug}/close', 'KeyController@close');
 
 Route::get('properties/{slug}', 'PropertyController@show');
 

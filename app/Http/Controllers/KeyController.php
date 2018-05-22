@@ -46,9 +46,9 @@ class KeyController extends Controller
      * @param  \App\Key  $key
      * @return \Illuminate\Http\Response
      */
-    public function show(Key $key)
+    public function show(Request $request, $hash)
     {
-        return $key;
+        return Key::where('hash', $hash)->first();
     }
 
     /**

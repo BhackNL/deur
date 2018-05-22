@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\User;
 
 class Key extends Model{
-	public function user() {
-        return $this->belongsTo(User::class);
-    }    
+	protected $fillable = [
+        'hash', 'active'
+    ];    
 }

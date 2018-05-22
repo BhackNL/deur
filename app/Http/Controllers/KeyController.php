@@ -15,7 +15,8 @@ class KeyController extends Controller
      */
     public function index()
     {
-        return Key::all();
+        
+        //return Key::all();
     }
 
     /**
@@ -47,7 +48,7 @@ class KeyController extends Controller
      */
     public function show(Key $key)
     {
-        //
+        return $key;
     }
 
     /**
@@ -118,7 +119,7 @@ class KeyController extends Controller
 
     private function validateKey($keySlug) {
         $key = Key::where('hash', $keySlug)->first();
-        if(!$key) { 
+        if(!$key || !$key->active) { 
             abort(403, 'Unauthorized action.'); 
         }
     }

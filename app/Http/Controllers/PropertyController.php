@@ -7,79 +7,18 @@ use Illuminate\Http\Request;
 
 class PropertyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function show(Request $request, $slug)
     {
-        //
-    }
+        $property = Property::where('slug', $slug)->first();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        if(!$property) { 
+            abort(403, 'Unauthorized action.'); 
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        if(!$request->input('getObject')) {
+            return $property->value;
+        } 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Property  $property
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Property $property)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Property  $property
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Property $property)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Property  $property
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Property $property)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Property  $property
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Property $property)
-    {
-        //
+        return $property;
     }
 }
